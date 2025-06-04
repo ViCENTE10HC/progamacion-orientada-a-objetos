@@ -1,0 +1,33 @@
+funciones para el calculo de un area
+#include <iostream>
+#include <cmath> // Para usar M_PI
+
+using namespace std;
+
+// Función para calcular el área de un círculo
+double areaCirculo(double radio) {
+    return M_PI * pow(radio, 2);
+}
+
+// Función para calcular el área de un cuadrado
+double areaCuadrado(double lado) {
+    return lado * lado;
+}
+
+// Función para calcular el área de un triángulo
+double areaTriangulo(double base, double altura) {
+    return (base * altura) / 2.0;
+}
+
+int main() {
+    double r = 5.0;
+    double l = 4.0;
+    double b = 6.0;
+    double h = 3.0;
+
+    cout << "Área del círculo (radio = " << r << "): " << areaCirculo(r) << endl;
+    cout << "Área del cuadrado (lado = " << l << "): " << areaCuadrado(l) << endl;
+    cout << "Área del triángulo (base = " << b << ", altura = " << h << "): " << areaTriangulo(b, h) << endl;
+
+    return 0;
+}
