@@ -1,0 +1,91 @@
+#include <iostream>
+#include <cmath>
+
+using namespace std;
+
+// Clase abstracta base
+class FiguraGeometrica {
+public:
+    // Método virtual puro → clase abstracta
+    virtual double calcularArea() = 0;
+
+    // Destructor virtual para permitir destrucción segura desde punteros base
+    virtual ~FiguraGeometrica() {}
+};
+
+// Clase para el círculo
+class Circulo : public FiguraGeometrica {
+private:
+    double radio;
+    double area;
+    bool areaCalculada;
+
+public:
+    Circulo(double r) : radio(r), area(0), areaCalculada(false) {}
+
+    double calcularArea() override {
+        if (!areaCalculada) {
+            area = M_PI * pow(radio, 2);
+            areaCalculada = true;
+        }
+        return area;
+    }
+};
+
+// Clase para el cuadrado
+class Cuadrado : public FiguraGeometrica {
+private:
+    double lado;
+    double area;
+    bool areaCalculada;
+
+public:
+    Cuadrado(double l) : lado(l), area(0), areaCalculada(false) {}
+
+    double calcularArea() override {
+        if (!areaCalculada) {
+            area = lado * lado;
+            areaCalculada = true;
+        }
+        return area;
+    }
+};
+
+// Clase para el triángulo
+class Triangulo : public FiguraGeometrica {
+private:
+    double base, altura;
+    double area;
+    bool areaCalculada;
+
+public:
+    Triangulo(double b, double h) : base(b), altura(h), area(0), areaCalculada(false) {}
+
+    double calcularArea() override {
+        if (!areaCalculada) {
+            area = (base * altura) / 2.0;
+            areaCalculada = true;
+        }
+        return area;
+    }
+};
+
+int main() {
+    // Usamos punteros a la clase base para aprovechar el polimorfismo
+    FiguraGeometrica* figuras[3];
+
+    figuras[0] = new Circulo(5.0);
+    figuras[1] = new Cuadrado(4.0);
+    figuras[2] = new Triangulo(6.0, 3.0);
+
+    for (int i = 0; i < 3; ++i) {
+        cout << "Área de la figura " << i + 1 << ": " << figuras[i]->calcularArea() << endl;
+    }
+
+    // Liberar memoria
+    for (int i = 0; i < 3; ++i) {
+        delete figuras[i];
+    }
+
+    return 0;
+}
