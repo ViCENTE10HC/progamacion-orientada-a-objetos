@@ -1,0 +1,57 @@
+clases de fuguaras
+#include <iostream>
+#include <cmath>
+
+using namespace std;
+
+// Clase para el círculo
+class Circulo {
+private:
+    double radio;
+
+public:
+    Circulo(double r) : radio(r) {}
+
+    double calcularArea() {
+        return M_PI * pow(radio, 2);
+    }
+};
+
+// Clase para el cuadrado
+class Cuadrado {
+private:
+    double lado;
+
+public:
+    Cuadrado(double l) : lado(l) {}
+
+    double calcularArea() {
+        return lado * lado;
+    }
+};
+
+// Clase para el triángulo
+class Triangulo {
+private:
+    double base;
+    double altura;
+
+public:
+    Triangulo(double b, double h) : base(b), altura(h) {}
+
+    double calcularArea() {
+        return (base * altura) / 2.0;
+    }
+};
+
+int main() {
+    Circulo miCirculo(5.0);
+    Cuadrado miCuadrado(4.0);
+    Triangulo miTriangulo(6.0, 3.0);
+
+    cout << "Área del círculo: " << miCirculo.calcularArea() << endl;
+    cout << "Área del cuadrado: " << miCuadrado.calcularArea() << endl;
+    cout << "Área del triángulo: " << miTriangulo.calcularArea() << endl;
+
+    return 0;
+}
