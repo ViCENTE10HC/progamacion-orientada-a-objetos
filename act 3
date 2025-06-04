@@ -1,0 +1,77 @@
+#include <iostream>
+#include <cmath>
+
+using namespace std;
+
+// Clase para el círculo
+class Circulo {
+private:
+    double radio;
+    double area;
+    bool areaCalculada;
+
+public:
+    Circulo(double r) : radio(r), area(0), areaCalculada(false) {}
+
+    double calcularArea() {
+        if (!areaCalculada) {
+            area = M_PI * pow(radio, 2);
+            areaCalculada = true;
+        }
+        return area;
+    }
+};
+
+// Clase para el cuadrado
+class Cuadrado {
+private:
+    double lado;
+    double area;
+    bool areaCalculada;
+
+public:
+    Cuadrado(double l) : lado(l), area(0), areaCalculada(false) {}
+
+    double calcularArea() {
+        if (!areaCalculada) {
+            area = lado * lado;
+            areaCalculada = true;
+        }
+        return area;
+    }
+};
+
+// Clase para el triángulo
+class Triangulo {
+private:
+    double base, altura;
+    double area;
+    bool areaCalculada;
+
+public:
+    Triangulo(double b, double h) : base(b), altura(h), area(0), areaCalculada(false) {}
+
+    double calcularArea() {
+        if (!areaCalculada) {
+            area = (base * altura) / 2.0;
+            areaCalculada = true;
+        }
+        return area;
+    }
+};
+
+int main() {
+    Circulo c(5.0);
+    Cuadrado q(4.0);
+    Triangulo t(6.0, 3.0);
+
+    // Primer cálculo
+    cout << "Área del círculo: " << c.calcularArea() << endl;
+    cout << "Área del cuadrado: " << q.calcularArea() << endl;
+    cout << "Área del triángulo: " << t.calcularArea() << endl;
+
+    // Segundo llamado: ya no se vuelve a calcular
+    cout << "Área del círculo (de nuevo): " << c.calcularArea() << endl;
+
+    return 0;
+}
